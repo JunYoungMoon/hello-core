@@ -14,7 +14,7 @@ public class Order {
         this.discountPrice = discountPrice;
     }
 
-    public int calculatePrice(){
+    public int calculatePrice() {
         return itemPrice - discountPrice;
     }
 
