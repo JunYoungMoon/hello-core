@@ -4,9 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -23,11 +21,10 @@ class StatefulServiceTest {
         bean1.order("userA", 10000);
         bean2.order("userB", 20000);
 
-        int price = bean1.getPrice();
+        System.out.println("userA price = " + bean1.getPrice());
+        System.out.println("userB price = " + bean2.getPrice());
 
-        System.out.println("price = " + price);
-
-        assertThat(bean1.getPrice()).isEqualTo(20000);
+        assertThat(bean1.getPrice()).isEqualTo(10000);
     }
 
     @Test
@@ -60,9 +57,7 @@ class StatefulServiceTest {
         System.out.println("price = " + price);
     }
 
-
     static class TestConfig{
-
         @Bean
         public StatefulService statefulService(){
             return new StatefulService();
